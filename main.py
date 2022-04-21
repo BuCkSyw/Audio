@@ -2,7 +2,7 @@ import subprocess
 import ffmpeg
 import sys
 
-
+#cropping the original clip to match the original audio recording
 sys.path.append(r'C:\FFmpeg\bin')
 
 stream = ffmpeg.input('clip.mp4')
@@ -11,18 +11,18 @@ stream = stream.filter('fps', fps=25, round='up')
 stream = ffmpeg.output(stream, 'new_video.mp4')
 ffmpeg.run(stream)
 
-
+#function for executing the command passed in the argument
 def run_command(command):
     p = subprocess.run(
         command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
     )
-    print('Done!!!')
-    print('stdout:\n{}'.format(p.stdout.decode()))
 
     return p.stdout.decode().strip()
 
 
-
+#a function for turning an audio recording into a video showing sound waves
+#with a cropped clip superimposed on the background
+#function argument rec_name is audio file name, new_video is clip name
 def turn_audio_to_video(rec_name, new_video):
     rec_path = "./{}".format(rec_name)
     video_path = "./{}".format(new_video)
@@ -43,7 +43,7 @@ def turn_audio_to_video(rec_name, new_video):
     run_command(command)
     return video_name
 
-
+#function to save the rec_name and new_video and starting the function turn_audio_to_video
 def main():
     rec_name = "input.mp3"
     new_video = "new_video.mp4"
