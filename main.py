@@ -79,7 +79,7 @@ def final(f_wave, new_video):
     )
 
     run_command(command)
-# function to save the rec_name and new_video and starting the function turn_audio_to_video
+# function to saving all variables for functions and determines the order of script execution
 
 
 def main():
